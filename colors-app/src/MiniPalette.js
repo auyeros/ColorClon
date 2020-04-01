@@ -17,7 +17,7 @@ const styles = {
         backgroundColor: "grey"
     },
     title: {
-        displat: "flex",
+        display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         margin: "0",
