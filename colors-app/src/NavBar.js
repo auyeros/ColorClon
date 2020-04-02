@@ -12,7 +12,7 @@ import CloseIcon from "@material-ui/icons/Close";
 export default class NavBar extends Component {
     constructor(props) {
         super(props);
-        this.state = { format: "hex", open: "false" };
+        this.state = { format: "hex", open: false };
         this.handleFormatChange = this.handleFormatChange.bind(this);
         this.closeSnackBar = this.closeSnackBar.bind(this);
     }
@@ -24,25 +24,28 @@ export default class NavBar extends Component {
         this.setState({ open: false });
     }
     render() {
-        const { level, changeLevel } = this.props;
+        console.log(this.state.open);
+        const { level, changeLevel, showingAllColors } = this.props;
         const { format } = this.state;
         return (
             <header className="NavBar">
                 <div className="logo">
                     <Link to="/">reactcolorpicker</Link>
                 </div>
-                <div className="slider-container">
-                    <span>Level: {level}</span>
-                    <div className="slider">
-                        <Slider
-                            defaultValue={level}
-                            min={100}
-                            max={900}
-                            step={100}
-                            onAfterChange={changeLevel}
-                        />
+                {showingAllColors && (
+                    <div className="slider-container">
+                        <span>Level: {level}</span>
+                        <div className="slider">
+                            <Slider
+                                defaultValue={level}
+                                min={100}
+                                max={900}
+                                step={100}
+                                onAfterChange={changeLevel}
+                            />
+                        </div>
                     </div>
-                </div>
+                )}
                 <div className="select-container">
                     <Select value={format} onChange={this.handleFormatChange}>
                         <MenuItem value="hex">HEX - #ffffff</MenuItem>
