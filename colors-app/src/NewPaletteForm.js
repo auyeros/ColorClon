@@ -11,7 +11,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
-import { ChromePicker } from "react-color";
+import ColorPicker from "coloreact";
 
 const drawerWidth = 400;
 
@@ -87,7 +87,7 @@ class NewPaletteForm extends Component {
 
     render() {
         const { classes } = this.props;
-        const { open } = this.state;
+        const { open, setColor } = this.state;
 
         return (
             <div className={classes.root}>
@@ -115,6 +115,7 @@ class NewPaletteForm extends Component {
                         </Typography>
                     </Toolbar>
                 </AppBar>
+
                 <Drawer
                     className={classes.drawer}
                     variant="persistent"
@@ -139,10 +140,20 @@ class NewPaletteForm extends Component {
                             Random Color
                         </Button>
                     </div>
-                    <ChromePicker
-                        color="purple"
-                        onChangeComplete={(newColor) => console.log(newColor)}
-                    />
+                    <div>
+                        <ColorPicker
+                            style={{
+                                position: "relative",
+                                height: "300px",
+                                width: "100%",
+                                paddingLeft: "1.3em",
+                            }}
+                            color="#408fa3"
+                            onChange={(color) =>
+                                console.log("single-example color:", color.hex)
+                            }
+                        />
+                    </div>
                     <Button variant="contained" color="primary">
                         Add Color
                     </Button>
